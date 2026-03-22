@@ -59,33 +59,45 @@
         <button class="mobile-tab" data-tab="preview">Preview</button>
     </nav>
 
+    <!-- Shared toolbar spanning both panes -->
+    <div class="shared-toolbar">
+        <div class="toolbar-section toolbar-left">
+            <button class="toolbar-btn" data-action="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+            <button class="toolbar-btn" data-action="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+            <button class="toolbar-btn" data-action="link" title="Link (Ctrl+K)">🔗</button>
+            <button class="toolbar-btn" data-action="list" title="Bullet List">•</button>
+            <button class="toolbar-btn" data-action="h1" title="Heading 1">H1</button>
+            <button class="toolbar-btn" data-action="h2" title="Heading 2">H2</button>
+            <span class="toolbar-divider"></span>
+            <select id="section-template" class="toolbar-select" title="Insert Section">
+                <option value="">+ Section</option>
+                <option value="experience">Experience</option>
+                <option value="education">Education</option>
+                <option value="skills">Skills</option>
+                <option value="projects">Projects</option>
+                <option value="certifications">Certifications</option>
+            </select>
+            <span class="toolbar-divider"></span>
+            <button id="find-btn" class="toolbar-btn" title="Find & Replace">🔍</button>
+        </div>
+        <div class="toolbar-section toolbar-center">
+            <span id="save-indicator" class="save-indicator" title="Auto-saved">✓ Saved</span>
+            <span id="char-count" class="char-count">0 chars</span>
+        </div>
+        <div class="toolbar-section toolbar-right">
+            <button id="page-break-btn" class="toolbar-btn" title="Insert page break">⏎ Break</button>
+            <button id="clear-btn" class="toolbar-btn" title="Clear content">🗑 Clear</button>
+            <span class="toolbar-divider"></span>
+            <button id="zoom-out" class="toolbar-btn" title="Zoom Out">−</button>
+            <button id="zoom-reset" class="toolbar-btn" title="Reset Zoom">⟲</button>
+            <button id="zoom-in" class="toolbar-btn" title="Zoom In">+</button>
+        </div>
+    </div>
+
     <main class="split-container">
         <div class="editor-pane active">
             <div class="pane-header">
                 <span>Markdown</span>
-                <div class="editor-actions">
-                    <span id="save-indicator" class="save-indicator" title="Auto-saved">✓ Saved</span>
-                    <span id="char-count" class="char-count">0 chars</span>
-                </div>
-            </div>
-            <div class="editor-toolbar">
-                <button class="toolbar-btn" data-action="bold" title="Bold (Ctrl+B)"><b>B</b></button>
-                <button class="toolbar-btn" data-action="italic" title="Italic (Ctrl+I)"><i>I</i></button>
-                <button class="toolbar-btn" data-action="link" title="Link (Ctrl+K)">🔗</button>
-                <button class="toolbar-btn" data-action="list" title="Bullet List">•</button>
-                <button class="toolbar-btn" data-action="h1" title="Heading 1">H1</button>
-                <button class="toolbar-btn" data-action="h2" title="Heading 2">H2</button>
-                <span class="toolbar-divider"></span>
-                <select id="section-template" class="toolbar-select" title="Insert Section">
-                    <option value="">+ Section</option>
-                    <option value="experience">Experience</option>
-                    <option value="education">Education</option>
-                    <option value="skills">Skills</option>
-                    <option value="projects">Projects</option>
-                    <option value="certifications">Certifications</option>
-                </select>
-                <span class="toolbar-divider"></span>
-                <button id="find-btn" class="toolbar-btn" title="Find & Replace">🔍</button>
             </div>
             <textarea id="markdown-input"></textarea>
         </div>
@@ -93,13 +105,6 @@
         <div class="preview-pane">
             <div class="pane-header">
                 <span>Preview (A4)</span>
-                <div class="pane-actions">
-                    <button id="page-break-btn" class="btn-text" title="Insert page break">⏎ Break</button>
-                    <button id="clear-btn" class="btn-text">Clear</button>
-                    <button id="zoom-in" class="btn-icon" title="Zoom In">+</button>
-                    <button id="zoom-out" class="btn-icon" title="Zoom Out">−</button>
-                    <button id="zoom-reset" class="btn-icon" title="Reset Zoom">⟲</button>
-                </div>
             </div>
             <div class="preview-container">
                 <!-- Pages rendered dynamically here -->
