@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Resume Builder</title>
-    <link rel="stylesheet" href="css/main.css?v=6">
-    <link rel="stylesheet" href="css/preview.css?v=6">
+    <link rel="stylesheet" href="css/main.css?v=7">
+    <link rel="stylesheet" href="css/preview.css?v=7">
     <!-- All themes loaded - switching done via class names -->
-    <link rel="stylesheet" href="css/themes/ats-classic.css?v=6">
-    <link rel="stylesheet" href="css/themes/modern.css?v=6">
-    <link rel="stylesheet" href="css/themes/minimal.css?v=6">
-    <link rel="stylesheet" href="css/themes/creative.css?v=6">
-    <link rel="stylesheet" href="css/themes/professional.css?v=6">
+    <link rel="stylesheet" href="css/themes/ats-classic.css?v=7">
+    <link rel="stylesheet" href="css/themes/modern.css?v=7">
+    <link rel="stylesheet" href="css/themes/minimal.css?v=7">
+    <link rel="stylesheet" href="css/themes/creative.css?v=7">
+    <link rel="stylesheet" href="css/themes/professional.css?v=7">
     <!-- CodeMirror 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
@@ -23,6 +23,14 @@
     <header class="app-header">
         <h1>Markdown Resume Builder</h1>
         <div class="controls">
+            <select id="template-selector" class="template-select" title="Load Template">
+                <option value="">Templates</option>
+                <option value="software-engineer">Software Engineer</option>
+                <option value="product-manager">Product Manager</option>
+                <option value="designer">Designer</option>
+                <option value="marketing">Marketing</option>
+                <option value="minimal">Minimal</option>
+            </select>
             <select id="theme-selector" class="theme-select">
                 <option value="ats-classic">ATS Classic</option>
                 <option value="modern">Modern</option>
@@ -30,6 +38,14 @@
                 <option value="creative">Creative</option>
                 <option value="professional">Professional</option>
             </select>
+            <button id="import-btn" class="btn-secondary" title="Import .md file">
+                <span class="btn-icon-left">📥</span>
+                Import
+            </button>
+            <button id="export-md-btn" class="btn-secondary" title="Export as .md file">
+                <span class="btn-icon-left">📤</span>
+                Export MD
+            </button>
             <button id="export-btn" class="btn-primary">
                 <span class="btn-icon-left">📄</span>
                 Export PDF
@@ -48,9 +64,28 @@
             <div class="pane-header">
                 <span>Markdown</span>
                 <div class="editor-actions">
-                    <button id="page-break-btn" class="btn-text" title="Insert page break at cursor">⏎ Page Break</button>
-                    <button id="clear-btn" class="btn-text">Clear</button>
+                    <span id="save-indicator" class="save-indicator" title="Auto-saved">✓ Saved</span>
+                    <span id="char-count" class="char-count">0 chars</span>
                 </div>
+            </div>
+            <div class="editor-toolbar">
+                <button class="toolbar-btn" data-action="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+                <button class="toolbar-btn" data-action="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+                <button class="toolbar-btn" data-action="link" title="Link (Ctrl+K)">🔗</button>
+                <button class="toolbar-btn" data-action="list" title="Bullet List">•</button>
+                <button class="toolbar-btn" data-action="h1" title="Heading 1">H1</button>
+                <button class="toolbar-btn" data-action="h2" title="Heading 2">H2</button>
+                <span class="toolbar-divider"></span>
+                <select id="section-template" class="toolbar-select" title="Insert Section">
+                    <option value="">+ Section</option>
+                    <option value="experience">Experience</option>
+                    <option value="education">Education</option>
+                    <option value="skills">Skills</option>
+                    <option value="projects">Projects</option>
+                    <option value="certifications">Certifications</option>
+                </select>
+                <span class="toolbar-divider"></span>
+                <button id="find-btn" class="toolbar-btn" title="Find & Replace">🔍</button>
             </div>
             <textarea id="markdown-input"></textarea>
         </div>
@@ -58,9 +93,13 @@
         <div class="preview-pane">
             <div class="pane-header">
                 <span>Preview (A4)</span>
-                <button id="zoom-in" class="btn-icon" title="Zoom In">+</button>
-                <button id="zoom-out" class="btn-icon" title="Zoom Out">−</button>
-                <button id="zoom-reset" class="btn-icon" title="Reset Zoom">⟲</button>
+                <div class="pane-actions">
+                    <button id="page-break-btn" class="btn-text" title="Insert page break">⏎ Break</button>
+                    <button id="clear-btn" class="btn-text">Clear</button>
+                    <button id="zoom-in" class="btn-icon" title="Zoom In">+</button>
+                    <button id="zoom-out" class="btn-icon" title="Zoom Out">−</button>
+                    <button id="zoom-reset" class="btn-icon" title="Reset Zoom">⟲</button>
+                </div>
             </div>
             <div class="preview-container">
                 <!-- Pages rendered dynamically here -->
@@ -68,11 +107,35 @@
         </div>
     </main>
 
-    <script src="js/utils.js?v=6"></script>
-    <script src="js/themes.js?v=6"></script>
-    <script src="js/preview.js?v=6"></script>
-    <script src="js/editor.js?v=6"></script>
-    <script src="js/pdf-export.js?v=6"></script>
-    <script src="js/app.js?v=6"></script>
+    <!-- Hidden file input for import -->
+    <input type="file" id="file-input" accept=".md,.txt" style="display: none">
+    
+    <!-- Find & Replace Modal -->
+    <div id="find-modal" class="find-modal" style="display: none;">
+        <div class="find-modal-content">
+            <div class="find-modal-header">
+                <h3>Find & Replace</h3>
+                <button id="close-find" class="find-close">&times;</button>
+            </div>
+            <div class="find-modal-body">
+                <input type="text" id="find-input" class="find-input" placeholder="Find...">
+                <input type="text" id="replace-input" class="find-input" placeholder="Replace with...">
+                <div class="find-buttons">
+                    <button id="find-next" class="find-btn">Find Next</button>
+                    <button id="find-prev" class="find-btn">Find Prev</button>
+                    <button id="replace-btn" class="find-btn">Replace</button>
+                    <button id="replace-all-btn" class="find-btn">Replace All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js?v=7"></script>
+    <script src="js/templates.js?v=7"></script>
+    <script src="js/themes.js?v=7"></script>
+    <script src="js/preview.js?v=7"></script>
+    <script src="js/editor.js?v=7"></script>
+    <script src="js/pdf-export.js?v=7"></script>
+    <script src="js/app.js?v=7"></script>
 </body>
 </html>
