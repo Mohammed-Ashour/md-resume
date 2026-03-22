@@ -179,6 +179,7 @@ ${PAGE_BREAK}
     }
     
     function setupTemplateSelector() {
+        // Full resume templates (header dropdown)
         const templateSelect = document.getElementById('template-selector');
         if (templateSelect) {
             templateSelect.addEventListener('change', (e) => {
@@ -188,10 +189,84 @@ ${PAGE_BREAK}
                     if (template && confirm('This will replace your current content. Continue?')) {
                         setValue(template);
                         saveContent();
+                        updateStats(template);
                     }
                 }
                 templateSelect.value = '';
             });
+        }
+        
+        // Section templates (toolbar dropdown)
+        const sectionSelect = document.getElementById('section-template');
+        if (sectionSelect) {
+            sectionSelect.addEventListener('change', (e) => {
+                const sectionName = e.target.value;
+                if (sectionName) {
+                    insertSectionTemplate(sectionName);
+                }
+                sectionSelect.value = '';
+            });
+        }
+    }
+    
+    function insertSectionTemplate(sectionName) {
+        const sections = {
+            'experience': `
+
+## Experience
+
+### Job Title
+**Company Name** | Location | Start Date - Present
+
+- Key achievement with measurable result
+- Another accomplishment
+- Technologies used: [list]
+`,
+            'education': `
+
+## Education
+
+### Degree Name
+**University Name** | Graduation Year
+
+- GPA: X.XX/4.0
+- Relevant coursework: [list]
+- Honors/Awards: [if applicable]
+`,
+            'skills': `
+
+## Skills
+
+**Technical:** Skill 1, Skill 2, Skill 3, Skill 4
+**Tools:** Tool 1, Tool 2, Tool 3
+**Soft Skills:** Skill 1, Skill 2, Skill 3
+`,
+            'projects': `
+
+## Projects
+
+### Project Name
+**Technologies:** Tech 1, Tech 2, Tech 3
+
+Brief description of the project and your role.
+- Key feature or impact
+- Link: github.com/yourname/project
+`,
+            'certifications': `
+
+## Certifications
+
+- Certification Name - Issuing Organization (Year)
+- Another Certification - Organization (Year)
+`
+        };
+        
+        if (sections[sectionName] && codeMirrorInstance) {
+            const cursor = codeMirrorInstance.getCursor();
+            codeMirrorInstance.replaceRange(sections[sectionName], cursor);
+            codeMirrorInstance.focus();
+            saveContent();
+            updateStats(codeMirrorInstance.getValue());
         }
     }
     
