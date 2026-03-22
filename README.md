@@ -1,8 +1,8 @@
 # Markdown Resume Builder
 
-Write your resume in Markdown, preview it live, and export to PDF. No server, no tracking, runs entirely in your browser.
+**🌐 Live Demo: https://mohammed-ashour.github.io/md-resume/**
 
-**Live Demo:** https://mohammed-ashour.github.io/md-resume/
+Write your resume in Markdown, preview it live, and export to PDF. No server, no tracking, runs entirely in your browser.
 
 ## What It Does
 
