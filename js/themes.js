@@ -1,8 +1,7 @@
-// Theme Manager - Handles theme switching and CSS loading
+// Theme Manager - Handles theme switching by toggling preloaded stylesheets
 const ThemeManager = (function() {
     const STORAGE_KEY = Utils.STORAGE_KEY_THEME;
     let currentTheme = 'ats-classic';
-    let themeLinkElement = null;
 
     const themes = [
         'ats-classic',
@@ -18,34 +17,24 @@ const ThemeManager = (function() {
             return;
         }
 
-        // Update stylesheet (use cached element if available)
-        if (!themeLinkElement) {
-            themeLinkElement = document.getElementById('theme-stylesheet');
+        // Disable all themes
+        document.querySelectorAll('[data-theme]').forEach(link => {
+            link.disabled = true;
+        });
+
+        // Enable selected theme
+        const selectedTheme = document.querySelector(`[data-theme="${themeName}"]`);
+        if (selectedTheme) {
+            selectedTheme.disabled = false;
         }
-        
-        if (themeLinkElement) {
-            // Set new theme href
-            themeLinkElement.href = `css/themes/${themeName}.css`;
-            
-            // Wait for stylesheet to load before re-rendering
-            themeLinkElement.onload = function() {
-                currentTheme = themeName;
-                Utils.setStorage(STORAGE_KEY, themeName);
-                
-                // Re-render preview with new theme
-                if (window.Preview && window.Editor) {
-                    Preview.render(Editor.getValue());
-                }
-            };
-            
-            // Handle load errors
-            themeLinkElement.onerror = function() {
-                console.error(`Failed to load theme: ${themeName}`);
-            };
-        }
-        
+
         currentTheme = themeName;
         Utils.setStorage(STORAGE_KEY, themeName);
+
+        // Re-render preview with new theme
+        if (window.Preview && window.Editor) {
+            Preview.render(Editor.getValue());
+        }
     }
 
     function getCurrentTheme() {
@@ -57,16 +46,21 @@ const ThemeManager = (function() {
     }
 
     function init() {
-        // Cache theme link element
-        themeLinkElement = document.getElementById('theme-stylesheet');
-        
         // Load saved theme preference
         const savedTheme = Utils.getStorage(STORAGE_KEY);
         if (savedTheme && themes.includes(savedTheme)) {
-            currentTheme = savedTheme;
-            if (themeLinkElement) {
-                themeLinkElement.href = `css/themes/${savedTheme}.css`;
+            // Disable all themes first
+            document.querySelectorAll('[data-theme]').forEach(link => {
+                link.disabled = true;
+            });
+            
+            // Enable saved theme
+            const themeLink = document.querySelector(`[data-theme="${savedTheme}"]`);
+            if (themeLink) {
+                themeLink.disabled = false;
             }
+            
+            currentTheme = savedTheme;
             
             // Update selector
             const selector = document.getElementById('theme-selector');
