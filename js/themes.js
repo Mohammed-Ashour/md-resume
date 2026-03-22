@@ -24,18 +24,28 @@ const ThemeManager = (function() {
         }
         
         if (themeLinkElement) {
+            // Set new theme href
             themeLinkElement.href = `css/themes/${themeName}.css`;
+            
+            // Wait for stylesheet to load before re-rendering
+            themeLinkElement.onload = function() {
+                currentTheme = themeName;
+                Utils.setStorage(STORAGE_KEY, themeName);
+                
+                // Re-render preview with new theme
+                if (window.Preview && window.Editor) {
+                    Preview.render(Editor.getValue());
+                }
+            };
+            
+            // Handle load errors
+            themeLinkElement.onerror = function() {
+                console.error(`Failed to load theme: ${themeName}`);
+            };
         }
         
         currentTheme = themeName;
-        
-        // Store preference
         Utils.setStorage(STORAGE_KEY, themeName);
-        
-        // Re-render preview with new theme if Preview is available
-        if (window.Preview && window.Editor) {
-            Preview.render(Editor.getValue());
-        }
     }
 
     function getCurrentTheme() {
