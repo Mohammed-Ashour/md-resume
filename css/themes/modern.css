@@ -1,0 +1,135 @@
+/* Modern Theme - Clean and contemporary */
+
+.a4-page.theme-modern {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #2c3e50;
+}
+
+.theme-modern h1 {
+    font-size: 26pt;
+    font-weight: 300;
+    color: #34495e;
+    margin-bottom: 0.2em;
+    letter-spacing: -0.5px;
+}
+
+.theme-modern h2 {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #2980b9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.theme-modern h3 {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 0.8em;
+    margin-bottom: 0.3em;
+}
+
+.theme-modern p {
+    margin-bottom: 0.6em;
+    color: #555;
+}
+
+.theme-modern ul,
+.theme-modern ol {
+    margin-left: 1.2em;
+    margin-bottom: 0.6em;
+}
+
+.theme-modern li {
+    margin-bottom: 0.3em;
+}
+
+.theme-modern li::marker {
+    color: #2980b9;
+}
+
+.theme-modern a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.theme-modern a:hover {
+    text-decoration: underline;
+}
+
+.theme-modern strong {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.theme-modern em {
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+.theme-modern blockquote {
+    margin: 1em 0;
+    padding: 0.8em 1em;
+    background: #ecf0f1;
+    border-left: 4px solid #2980b9;
+    font-style: italic;
+    color: #555;
+}
+
+.theme-modern hr {
+    border: none;
+    border-top: 1px solid #ecf0f1;
+    margin: 1.5em 0;
+}
+
+.theme-modern code {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 9.5pt;
+    background: #f8f9fa;
+    color: #e74c3c;
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+}
+
+.theme-modern pre {
+    background: #f8f9fa;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 9pt;
+    margin-bottom: 1em;
+    border: 1px solid #ecf0f1;
+}
+
+.theme-modern pre code {
+    background: none;
+    padding: 0;
+    color: #2c3e50;
+}
+
+.theme-modern table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+    font-size: 10pt;
+}
+
+.theme-modern th,
+.theme-modern td {
+    padding: 0.6em;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.theme-modern th {
+    font-weight: 600;
+    color: #2c3e50;
+    background: #f8f9fa;
+}

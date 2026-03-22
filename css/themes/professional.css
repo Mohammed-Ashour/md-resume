@@ -1,0 +1,130 @@
+/* Professional Theme - Corporate and polished */
+
+.a4-page.theme-professional {
+    font-family: 'Calibri', 'Segoe UI', sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #1a1a1a;
+}
+
+.theme-professional h1 {
+    font-size: 24pt;
+    font-weight: 600;
+    color: #1e3a5f;
+    margin-bottom: 0.3em;
+    letter-spacing: -0.5px;
+}
+
+.theme-professional h2 {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1e3a5f;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid #1e3a5f;
+}
+
+.theme-professional h3 {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #2c5282;
+    margin-top: 0.8em;
+    margin-bottom: 0.3em;
+}
+
+.theme-professional p {
+    margin-bottom: 0.5em;
+}
+
+.theme-professional ul,
+.theme-professional ol {
+    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.theme-professional li {
+    margin-bottom: 0.2em;
+}
+
+.theme-professional li::marker {
+    color: #1e3a5f;
+}
+
+.theme-professional a {
+    color: #2c5282;
+    text-decoration: none;
+}
+
+.theme-professional a:hover {
+    text-decoration: underline;
+}
+
+.theme-professional strong {
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.theme-professional em {
+    font-style: italic;
+    color: #4a5568;
+}
+
+.theme-professional blockquote {
+    margin: 1em 0;
+    padding: 0.8em 1em;
+    background: #f7fafc;
+    border-left: 3px solid #1e3a5f;
+    font-style: italic;
+}
+
+.theme-professional hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.2em 0;
+}
+
+.theme-professional code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 10pt;
+    background: #edf2f7;
+    color: #2b6cb0;
+    padding: 0.1em 0.3em;
+}
+
+.theme-professional pre {
+    background: #edf2f7;
+    padding: 1em;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 9.5pt;
+    margin-bottom: 0.8em;
+    border: 1px solid #e2e8f0;
+}
+
+.theme-professional pre code {
+    background: none;
+    padding: 0;
+}
+
+.theme-professional table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0.8em;
+    font-size: 10.5pt;
+}
+
+.theme-professional th,
+.theme-professional td {
+    padding: 0.5em;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+}
+
+.theme-professional th {
+    font-weight: 700;
+    color: #1e3a5f;
+    background: #edf2f7;
+}

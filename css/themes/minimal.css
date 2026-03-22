@@ -1,0 +1,116 @@
+/* Minimal Theme - Ultra clean and simple */
+
+.a4-page.theme-minimal {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: #333;
+}
+
+.theme-minimal h1 {
+    font-size: 22pt;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 0.3em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3em;
+}
+
+.theme-minimal h2 {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #666;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+}
+
+.theme-minimal h3 {
+    font-size: 10pt;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0.8em;
+    margin-bottom: 0.2em;
+}
+
+.theme-minimal p {
+    margin-bottom: 0.8em;
+}
+
+.theme-minimal ul,
+.theme-minimal ol {
+    margin-left: 1.2em;
+    margin-bottom: 0.8em;
+}
+
+.theme-minimal li {
+    margin-bottom: 0.2em;
+}
+
+.theme-minimal a {
+    color: #666;
+    text-decoration: underline;
+    text-decoration-color: #ccc;
+}
+
+.theme-minimal strong {
+    font-weight: 600;
+}
+
+.theme-minimal em {
+    font-style: italic;
+}
+
+.theme-minimal blockquote {
+    margin: 1em 0;
+    padding-left: 1em;
+    border-left: 1px solid #ddd;
+    color: #666;
+}
+
+.theme-minimal hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 2em 0;
+}
+
+.theme-minimal code {
+    font-family: Monaco, Consolas, monospace;
+    font-size: 9pt;
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+}
+
+.theme-minimal pre {
+    background: #f5f5f5;
+    padding: 1em;
+    overflow-x: auto;
+    font-family: Monaco, Consolas, monospace;
+    font-size: 9pt;
+    margin-bottom: 1em;
+}
+
+.theme-minimal pre code {
+    background: none;
+    padding: 0;
+}
+
+.theme-minimal table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+    font-size: 9.5pt;
+}
+
+.theme-minimal th,
+.theme-minimal td {
+    padding: 0.4em 0;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.theme-minimal th {
+    font-weight: 600;
+    color: #666;
+}
