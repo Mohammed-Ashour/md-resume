@@ -164,6 +164,11 @@ body {
     border-right: 1px solid var(--border-subtle);
 }
 
+/* Mobile tabs - hidden by default */
+.mobile-tabs {
+    display: none;
+}
+
 .pane-header {
     background: var(--bg-surface);
     padding: 10px 16px;
@@ -405,5 +410,149 @@ body {
         background: white !important;
         overflow: visible !important;
         display: block !important;
+    }
+}
+
+/* Responsive Styles */
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .app-header {
+        padding: 10px 16px;
+    }
+    
+    .app-header h1 {
+        font-size: 14px;
+    }
+    
+    .controls {
+        gap: 8px;
+    }
+    
+    .theme-select {
+        min-width: 100px;
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .btn-primary {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .pane-header {
+        padding: 8px 12px;
+    }
+    
+    .editor-actions {
+        gap: 6px;
+    }
+}
+
+/* Mobile (below 768px) - Stack layout with tabs */
+@media screen and (max-width: 767px) {
+    .app-header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 12px;
+        gap: 8px;
+    }
+    
+    .app-header h1 {
+        font-size: 14px;
+        width: 100%;
+    }
+    
+    .controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .theme-select {
+        flex: 1;
+        min-width: auto;
+    }
+    
+    .btn-primary {
+        padding: 6px 10px;
+    }
+    
+    /* Mobile tab navigation */
+    .mobile-tabs {
+        display: flex;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .mobile-tab {
+        flex: 1;
+        padding: 12px;
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all 0.15s ease;
+    }
+    
+    .mobile-tab.active {
+        color: var(--text-primary);
+        border-bottom-color: var(--accent);
+    }
+    
+    .mobile-tab:hover {
+        background: var(--bg-hover);
+    }
+    
+    /* Stack panes vertically */
+    .split-container {
+        flex-direction: column;
+    }
+    
+    .editor-pane,
+    .preview-pane {
+        display: none;
+    }
+    
+    .editor-pane.active,
+    .preview-pane.active {
+        display: flex;
+    }
+    
+    .editor-pane {
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .preview-container {
+        padding: 12px;
+    }
+    
+    /* Scale down A4 pages on mobile */
+    .a4-page {
+        transform: scale(0.6);
+        transform-origin: top center;
+        margin-bottom: 40px;
+    }
+    
+    .pane-header {
+        padding: 8px 12px;
+    }
+    
+    .editor-actions {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .btn-text {
+        padding: 3px 8px;
+        font-size: 11px;
+    }
+    
+    /* Hide zoom buttons on mobile */
+    .pane-header .btn-icon {
+        display: none;
     }
 }

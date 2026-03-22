@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Resume Builder</title>
-    <link rel="stylesheet" href="css/main.css?v=5">
-    <link rel="stylesheet" href="css/preview.css?v=5">
+    <link rel="stylesheet" href="css/main.css?v=6">
+    <link rel="stylesheet" href="css/preview.css?v=6">
     <!-- All themes loaded - switching done via class names -->
-    <link rel="stylesheet" href="css/themes/ats-classic.css?v=5">
-    <link rel="stylesheet" href="css/themes/modern.css?v=5">
-    <link rel="stylesheet" href="css/themes/minimal.css?v=5">
-    <link rel="stylesheet" href="css/themes/creative.css?v=5">
-    <link rel="stylesheet" href="css/themes/professional.css?v=5">
+    <link rel="stylesheet" href="css/themes/ats-classic.css?v=6">
+    <link rel="stylesheet" href="css/themes/modern.css?v=6">
+    <link rel="stylesheet" href="css/themes/minimal.css?v=6">
+    <link rel="stylesheet" href="css/themes/creative.css?v=6">
+    <link rel="stylesheet" href="css/themes/professional.css?v=6">
     <!-- CodeMirror 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
@@ -37,8 +37,14 @@
         </div>
     </header>
 
+    <!-- Mobile tabs (visible on small screens) -->
+    <nav class="mobile-tabs" id="mobile-tabs">
+        <button class="mobile-tab active" data-tab="editor">Editor</button>
+        <button class="mobile-tab" data-tab="preview">Preview</button>
+    </nav>
+
     <main class="split-container">
-        <div class="editor-pane">
+        <div class="editor-pane active">
             <div class="pane-header">
                 <span>Markdown</span>
                 <div class="editor-actions">
@@ -62,11 +68,11 @@
         </div>
     </main>
 
-    <script src="js/utils.js?v=5"></script>
-    <script src="js/themes.js?v=5"></script>
-    <script src="js/preview.js?v=5"></script>
-    <script src="js/editor.js?v=5"></script>
-    <script src="js/pdf-export.js?v=5"></script>
-    <script src="js/app.js?v=5"></script>
+    <script src="js/utils.js?v=6"></script>
+    <script src="js/themes.js?v=6"></script>
+    <script src="js/preview.js?v=6"></script>
+    <script src="js/editor.js?v=6"></script>
+    <script src="js/pdf-export.js?v=6"></script>
+    <script src="js/app.js?v=6"></script>
 </body>
 </html>
