@@ -4,14 +4,40 @@
 
 Write your resume in Markdown, preview it live, and export to PDF. No server, no tracking, runs entirely in your browser.
 
-## What It Does
+![Screenshot](assets/screenshot.png)
 
+## Features
+
+### Core
 - Split-screen editor with live A4 preview
 - 5 professional themes (ATS-optimized included)
 - Manual page breaks for full control
 - One-click PDF export
 - Auto-saves your work
 - 100% private - everything stays in your browser
+
+### Editor
+- **Markdown Toolbar** - Bold, Italic, Link, Lists, Headings
+- **Section Templates** - Insert pre-formatted sections (Experience, Education, Skills, Projects, Certifications)
+- **Find & Replace** - Search and replace text (Ctrl+F)
+- **Character & Word Count** - Live stats in the editor
+- **Auto-save Indicator** - Visual feedback when saving
+- **Keyboard Shortcuts** - Ctrl+B (bold), Ctrl+I (italic), Ctrl+K (link)
+
+### Import/Export
+- **Import .md files** - Load existing resumes
+- **Export .md files** - Save your work as Markdown
+- **Browse Templates** - Software Engineer, Product Manager, Designer, Marketing, Minimal
+
+### Themes
+
+| Theme | Best For |
+|-------|----------|
+| **ATS Classic** | Job applications, corporate roles |
+| **Modern** | Tech companies, startups |
+| **Minimal** | Clean, simple presentation |
+| **Creative** | Designers, creative roles |
+| **Professional** | Traditional industries, executives |
 
 ## Quick Start
 
@@ -71,16 +97,6 @@ Your education...
 - Use sparingly - let content flow naturally when possible
 - The "Page Break" button inserts one at your cursor position
 
-### Themes
-
-| Theme | Best For |
-|-------|----------|
-| **ATS Classic** | Job applications, corporate roles |
-| **Modern** | Tech companies, startups |
-| **Minimal** | Clean, simple presentation |
-| **Creative** | Designers, creative roles |
-| **Professional** | Traditional industries, executives |
-
 ### PDF Export
 
 1. Click "Export PDF" (or press `Ctrl+P`)
@@ -100,15 +116,17 @@ Your education...
 ├── index.html
 ├── css/
 │   ├── main.css
-│   ├── preview.css
 │   └── themes/
 ├── js/
 │   ├── app.js
 │   ├── editor.js
 │   ├── preview.js
 │   ├── themes.js
+│   ├── templates.js
 │   ├── pdf-export.js
 │   └── utils.js
+├── assets/
+│   └── screenshot.png
 └── README.md
 ```
 
@@ -118,7 +136,10 @@ Your education...
 |----------|--------|
 | `Ctrl+S` / `Cmd+S` | Save (auto-saves anyway) |
 | `Ctrl+P` / `Cmd+P` | Export PDF |
-| `Page Break` button | Insert `<!-- page-break -->` |
+| `Ctrl+B` | Bold text |
+| `Ctrl+I` | Italic text |
+| `Ctrl+K` | Insert link |
+| `Ctrl+F` | Find & Replace |
 
 ## Tech Stack
 
