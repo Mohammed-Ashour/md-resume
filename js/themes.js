@@ -1,4 +1,4 @@
-// Theme Manager - Handles theme switching by toggling preloaded stylesheets
+// Theme Manager - Switches theme by changing class on preview elements
 const ThemeManager = (function() {
     const STORAGE_KEY = Utils.STORAGE_KEY_THEME;
     let currentTheme = 'ats-classic';
@@ -17,19 +17,17 @@ const ThemeManager = (function() {
             return;
         }
 
-        // Disable all themes
-        document.querySelectorAll('[data-theme]').forEach(link => {
-            link.disabled = true;
-        });
-
-        // Enable selected theme
-        const selectedTheme = document.querySelector(`[data-theme="${themeName}"]`);
-        if (selectedTheme) {
-            selectedTheme.disabled = false;
-        }
-
         currentTheme = themeName;
         Utils.setStorage(STORAGE_KEY, themeName);
+
+        // Update all .a4-page elements with new theme class
+        const pages = document.querySelectorAll('.a4-page');
+        pages.forEach(page => {
+            // Remove old theme classes
+            themes.forEach(t => page.classList.remove(`theme-${t}`));
+            // Add new theme class
+            page.classList.add(`theme-${themeName}`);
+        });
 
         // Re-render preview with new theme
         if (window.Preview && window.Editor) {
@@ -49,17 +47,6 @@ const ThemeManager = (function() {
         // Load saved theme preference
         const savedTheme = Utils.getStorage(STORAGE_KEY);
         if (savedTheme && themes.includes(savedTheme)) {
-            // Disable all themes first
-            document.querySelectorAll('[data-theme]').forEach(link => {
-                link.disabled = true;
-            });
-            
-            // Enable saved theme
-            const themeLink = document.querySelector(`[data-theme="${savedTheme}"]`);
-            if (themeLink) {
-                themeLink.disabled = false;
-            }
-            
             currentTheme = savedTheme;
             
             // Update selector
