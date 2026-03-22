@@ -100,6 +100,50 @@ Built interactive portfolio using Next.js and deployed on Vercel
             Preview.render(content);
             Utils.setStorage(STORAGE_KEY, content);
         }, 300));
+        
+        // Set up sync scrolling
+        setupSyncScrolling();
+    }
+    
+    function setupSyncScrolling() {
+        const editorWrapper = codeMirrorInstance.getWrapperElement();
+        const previewContainer = document.querySelector('.preview-container');
+        
+        let isEditorScrolling = false;
+        let isPreviewScrolling = false;
+        
+        // Sync editor scroll to preview
+        codeMirrorInstance.on('scroll', function() {
+            if (isPreviewScrolling) return;
+            isEditorScrolling = true;
+            
+            const scrollInfo = codeMirrorInstance.getScrollInfo();
+            const editorHeight = scrollInfo.height - scrollInfo.clientHeight;
+            const previewHeight = previewContainer.scrollHeight - previewContainer.clientHeight;
+            
+            if (editorHeight > 0 && previewHeight > 0) {
+                const scrollRatio = scrollInfo.top / editorHeight;
+                previewContainer.scrollTop = scrollRatio * previewHeight;
+            }
+            
+            setTimeout(() => { isEditorScrolling = false; }, 50);
+        });
+        
+        // Sync preview scroll to editor
+        previewContainer.addEventListener('scroll', function() {
+            if (isEditorScrolling) return;
+            isPreviewScrolling = true;
+            
+            const editorHeight = codeMirrorInstance.getScrollInfo().height - codeMirrorInstance.getScrollInfo().clientHeight;
+            const previewHeight = previewContainer.scrollHeight - previewContainer.clientHeight;
+            
+            if (editorHeight > 0 && previewHeight > 0) {
+                const scrollRatio = previewContainer.scrollTop / previewHeight;
+                codeMirrorInstance.scrollTo(null, scrollRatio * editorHeight);
+            }
+            
+            setTimeout(() => { isPreviewScrolling = false; }, 50);
+        });
     }
     
     function setupEventListeners() {
